@@ -6,7 +6,8 @@ on:
       - main
     paths: 
       - 'deploy/**'
-
+  workflow_dispatch:
+    
 env: 
     AZURE_RESOURCEGROUP_NAME: ToyWebsite
     ENVIRONMENT_TYPE: Test
