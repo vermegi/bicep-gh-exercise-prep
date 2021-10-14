@@ -12,6 +12,18 @@ env:
     ENVIRONMENT_TYPE: Test
 
 jobs:
+  lint: 
+    runs-on: ubuntu-latest
+    steps: 
+    - uses: actions/checkout@v2
+    - name: 'Lint Bicep template'
+      run: az bicep build --file deploy/main.bicep
+    - name: Lint Bicep template
+      uses: Azure/cli@1.0.4
+      with:
+        inlineScript: |
+          az bicep build --file deploy/main.bicep
+  
   deploy:
     runs-on: ubuntu-latest
     steps:
