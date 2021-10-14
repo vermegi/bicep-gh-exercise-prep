@@ -12,6 +12,9 @@ env:
     AZURE_RESOURCEGROUP_NAME: ToyWebsite
     ENVIRONMENT_TYPE: Test
 
+# todo: check Azure credentials, they are currently not valid
+# todo: add 'needs', all 3 jobs currently run at the same time
+
 jobs:
   lint: 
     runs-on: ubuntu-latest
