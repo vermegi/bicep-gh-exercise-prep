@@ -11,8 +11,6 @@ on:
 env: 
     AZURE_RESOURCEGROUP_NAME: ToyWebsiteTest
     ENVIRONMENT_TYPE: Test
-    
-# todo: add 'needs', all 3 jobs currently run at the same time
 
 jobs:
   lint: 
@@ -39,6 +37,7 @@ jobs:
         
   deploy:
     runs-on: ubuntu-latest
+    needs: [lint, validate]
     steps:
     - uses: actions/checkout@v2
     - uses: azure/login@v1
