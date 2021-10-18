@@ -45,10 +45,10 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2021-01-15' = {
 
 resource appServiceApp 'Microsoft.Web/sites@2021-01-15' = {
   name: appServiceAppName
-  httpsOnly: true
   location: location
   properties: {
     serverFarmId: appServicePlan.id
+    httpsOnly: true
     siteConfig: {
       appSettings: [
         {
