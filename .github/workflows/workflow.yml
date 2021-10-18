@@ -103,7 +103,7 @@ jobs:
           Write-Output $hostname
           $container = New-PesterContainer `
             -Path 'deploy/Website.Tests.ps1' `
-            -Data @{ HostName = '$hostname' }
+            -Data @{ HostName = $hostname }
           Invoke-Pester `
             -Container $container `
             -CI
