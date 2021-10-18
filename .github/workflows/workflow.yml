@@ -64,12 +64,12 @@ jobs:
     - uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
-    - uses: azure/arm-deploy@v1
-      with:
-        deploymentName: ${{ github.run_number }}
-        resourceGroupName: ${{ env.AZURE_RESOURCEGROUP_NAME }}
-        template: ./deploy/main.bicep
-        parameters: environmentType=${{ env.ENVIRONMENT_TYPE }}
+#    - uses: azure/arm-deploy@v1
+#      with:
+#        deploymentName: ${{ github.run_number }}
+#        resourceGroupName: ${{ env.AZURE_RESOURCEGROUP_NAME }}
+#        template: ./deploy/main.bicep
+#        parameters: environmentType=${{ env.ENVIRONMENT_TYPE }}
     - uses: Azure/cli@v1
       id: Deploy
       with:
