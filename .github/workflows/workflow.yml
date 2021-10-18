@@ -86,8 +86,7 @@ jobs:
                     --resource-group ${{ env.AZURE_RESOURCEGROUP_NAME }} \
                     --template-file deploy/main.bicep \
                     --parameters environmentType=${{ env.ENVIRONMENT_TYPE }})
-            appServiceAppHostName=$(echo $deploymentOutput | jq -r '.properties.outputs.appServiceAppHostName.value')
-            $appServiceAppHostName > hostname.txt
+            $(echo $deploymentOutput | jq -r '.properties.outputs.appServiceAppHostName.value') > hostname.txt
 #    - uses: Azure/cli@1.0.4
 #      name: Get output
 #      with:
