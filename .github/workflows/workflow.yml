@@ -37,6 +37,7 @@ jobs:
         
   review: 
     runs-on: ubuntu-latest
+    needs: [lint, validate]
     steps: 
     - uses: actions/checkout@v2
     - uses: azure/login@v1
@@ -54,7 +55,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     environment: Website
-    needs: [lint, validate]
+    needs: review
     steps:
     - uses: actions/checkout@v2
     - uses: azure/login@v1
