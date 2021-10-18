@@ -113,7 +113,8 @@ jobs:
       with:
         inlineScript: |
           $hostname = Get-Content -Path hostname.txt | Out-String
-          Write-Output "_$hostname_"
+          Write-Output "hostname: $hostname :hostame"
+          Write-Output $hostname
           $container = New-PesterContainer `
             -Path 'deploy/Website.Tests.ps1' `
             -Data @{ HostName = $hostname }
