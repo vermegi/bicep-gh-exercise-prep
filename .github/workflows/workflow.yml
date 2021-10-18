@@ -44,6 +44,7 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}    
     - uses: Azure/cli@1.0.4
+      name: Run what-if
       with:
         # Specify the script here
         inlineScript: |
