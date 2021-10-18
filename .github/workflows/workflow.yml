@@ -72,12 +72,15 @@ jobs:
       name: Deploy
       with:
         inlineScript: |
-            deploymentOutput=$(az deployment group create \
+            az deployment group create \
                     --name ${{ github.run_number }} \
                     --resource-group ${{ env.AZURE_RESOURCEGROUP_NAME }} \
                     --template-file deploy/main.bicep \
-                    --parameters environmentType=${{ env.ENVIRONMENT_TYPE }})
-            $(echo $deploymentOutput | jq -r '.properties.outputs.appServiceAppHostName.value') > hostname.txt
+                    --parameters environmentType=${{ env.ENVIRONMENT_TYPE }}
+            az deployment group show \
+                    --resource-group ${{ env.AZURE_RESOURCEGROUP_NAME }} \
+                    --name ${{ github.run_number }} \
+                    --query properties.outputs.appServiceAppHostName.value -o tsv > hostname.txt
 #    - uses: Azure/cli@1.0.4
 #      name: Get output
 #      with:
