@@ -72,7 +72,7 @@ jobs:
 #        parameters: environmentType=${{ env.ENVIRONMENT_TYPE }}
     - run: |
          echo "::set-output name=appServiceAppHostName::blah"
-      name: Deploy
+      id: Deploy
 #    - uses: Azure/cli@v1
 #      name: Deploy
 #      with:
