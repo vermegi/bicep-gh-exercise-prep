@@ -75,7 +75,7 @@ jobs:
             echo "appServiceAppHostName=$(az deployment group show \
                   --resource-group ${{ env.AZURE_RESOURCEGROUP_NAME }} \
                   --name ${{ github.run_number }} \
-                  --query properties.outputs.appServiceAppHostName.value -o tsv)" >> GITHUB_ENV     
+                  --query properties.outputs.appServiceAppHostName.value -o tsv)" >> $GITHUB_ENV     
 
   smoke-test:
     runs-on: ubuntu-latest
@@ -83,11 +83,13 @@ jobs:
     steps: 
     - uses: actions/checkout@v2
     - name: Smoke test
-      run: |
-        $container = New-PesterContainer `
-          -Path 'deploy/Website.Tests.ps1' `
-          -Data @{ HostName = '${{ env.appServiceAppHostName }}' }
-        Invoke-Pester `
-          -Container $container `
-          -CI
-      
+      uses: Azure/powershell@v1
+      with:
+        inlineScript: |
+          $container = New-PesterContainer `
+            -Path 'deploy/Website.Tests.ps1' `
+            -Data @{ HostName = '${{ env.appServiceAppHostName }}' }
+          Invoke-Pester `
+            -Container $container `
+            -CI
+        azPSVersion: latest      
