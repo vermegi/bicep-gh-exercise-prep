@@ -72,6 +72,7 @@ jobs:
 #        parameters: environmentType=${{ env.ENVIRONMENT_TYPE }}
     - run: |
          echo "::set-output name=appServiceAppHostName::blah"
+      name: Deploy
 #    - uses: Azure/cli@v1
 #      name: Deploy
 #      with:
@@ -108,10 +109,10 @@ jobs:
 #      uses: actions/download-artifact@v2
 #      with:
 #        name: hostname
-    - uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-        enable-AzPSSession: true 
+#    - uses: azure/login@v1
+#      with:
+#        creds: ${{ secrets.AZURE_CREDENTIALS }}
+#        enable-AzPSSession: true 
     - run: |
         echo "test"
         echo "hostname: ${{needs.deploy.outputs.appServiceAppHostName}}"
