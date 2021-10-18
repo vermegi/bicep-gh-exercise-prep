@@ -43,7 +43,7 @@ jobs:
      - uses: azure/login@v1
        with:
          creds: ${{ secrets.AZURE_CREDENTIALS }}    
-     - uses: Azure/cli@1.0.4
+     - uses: Azure/cli@v1
        name: Run what-if
        with:
          # Specify the script here
@@ -68,7 +68,7 @@ jobs:
 #        resourceGroupName: ${{ env.AZURE_RESOURCEGROUP_NAME }}
 #        template: ./deploy/main.bicep
 #        parameters: environmentType=${{ env.ENVIRONMENT_TYPE }}
-    - uses: Azure/cli@1.0.4
+    - uses: Azure/cli@v1
       name: Deploy
       with:
         inlineScript: |
