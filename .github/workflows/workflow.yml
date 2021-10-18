@@ -78,8 +78,9 @@ jobs:
                     --name ${{ github.run_number }} \
                     --resource-group ${{ env.AZURE_RESOURCEGROUP_NAME }} \
                     --template-file deploy/main.bicep \
-                    --parameters environmentType=${{ env.ENVIRONMENT_TYPE }} --query .properties.outputs.appServiceAppHostName.value -o tsv)
-            echo "::set-output name=appServiceAppHostName::$deploymentOutput"
+                    --parameters environmentType=${{ env.ENVIRONMENT_TYPE }})
+            appServiceAppHostName=$(echo $deploymentOutput | jq -r '.properties.outputs.appServiceAppHostName.value')
+            echo "::set-output name=appServiceAppHostName::$appServiceAppHostName"
 #    - uses: Azure/cli@1.0.4
 #      name: Get output
 #      with:
