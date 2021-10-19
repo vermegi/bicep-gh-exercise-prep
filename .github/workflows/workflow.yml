@@ -57,7 +57,7 @@ jobs:
  
   deploy:
     runs-on: ubuntu-latest
-#    environment: Website
+    environment: Website
     needs: preview
     outputs:
       appServiceAppHostName: ${{ steps.deploy.outputs.appServiceAppHostName }}
